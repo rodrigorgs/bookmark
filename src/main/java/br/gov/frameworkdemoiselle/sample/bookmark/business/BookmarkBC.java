@@ -1,5 +1,7 @@
 package br.gov.frameworkdemoiselle.sample.bookmark.business;
 
+import javax.inject.Inject;
+
 import br.gov.frameworkdemoiselle.lifecycle.Startup;
 import br.gov.frameworkdemoiselle.stereotype.BusinessController;
 import br.gov.frameworkdemoiselle.template.DelegateCrud;
@@ -7,6 +9,8 @@ import br.gov.frameworkdemoiselle.transaction.Transactional;
 
 import br.gov.frameworkdemoiselle.sample.bookmark.domain.Bookmark;
 import br.gov.frameworkdemoiselle.sample.bookmark.persistence.BookmarkDAO;
+import br.gov.frameworkdemoiselle.sample.bookmark.security.Credenciais;
+import br.gov.frameworkdemoiselle.security.SecurityContext;
 
 @BusinessController
 public class BookmarkBC extends DelegateCrud<Bookmark, Long, BookmarkDAO> {
@@ -29,5 +33,5 @@ public class BookmarkBC extends DelegateCrud<Bookmark, Long, BookmarkDAO> {
 			insert(new Bookmark("Downloads", "http://download.frameworkdemoiselle.gov.br"));
 		}
 	}
-	
+
 }

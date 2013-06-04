@@ -7,12 +7,14 @@ import javax.inject.Inject;
 
 import br.gov.frameworkdemoiselle.annotation.NextView;
 import br.gov.frameworkdemoiselle.annotation.PreviousView;
+import br.gov.frameworkdemoiselle.sample.bookmark.business.BookmarkBC;
+import br.gov.frameworkdemoiselle.sample.bookmark.domain.Bookmark;
+import br.gov.frameworkdemoiselle.sample.bookmark.security.Credenciais;
+import br.gov.frameworkdemoiselle.security.RequiredRole;
+import br.gov.frameworkdemoiselle.security.SecurityContext;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
 import br.gov.frameworkdemoiselle.template.AbstractListPageBean;
 import br.gov.frameworkdemoiselle.transaction.Transactional;
-
-import br.gov.frameworkdemoiselle.sample.bookmark.business.BookmarkBC;
-import br.gov.frameworkdemoiselle.sample.bookmark.domain.Bookmark;
 
 @ViewController
 @NextView("./bookmark_edit.xhtml")
@@ -24,8 +26,14 @@ public class BookmarkListMB extends AbstractListPageBean<Bookmark, Long> {
 	@Inject
 	private BookmarkBC bc;
 
+	@Inject
+	private SecurityContext securityContext;
+	
 	@Override
+	@RequiredRole("miserê")
 	protected List<Bookmark> handleResultList() {
+		if (!securityContext.hasRole("miserê2"))
+			throw new SecurityException("Não tem papel miserê2");
 		return this.bc.findAll();
 	}
 
@@ -44,4 +52,13 @@ public class BookmarkListMB extends AbstractListPageBean<Bookmark, Long> {
 		return getPreviousView();
 	}
 
+	
+	@Inject
+	private Credenciais credenciais;
+	
+	public void autentica() {
+		credenciais.setLogin("teste");
+		credenciais.setSenha("qwe");
+		securityContext.login();
+	}
 }
