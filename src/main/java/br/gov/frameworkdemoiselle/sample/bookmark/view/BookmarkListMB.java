@@ -15,8 +15,8 @@ import br.gov.frameworkdemoiselle.sample.bookmark.business.BookmarkBC;
 import br.gov.frameworkdemoiselle.sample.bookmark.domain.Bookmark;
 
 @ViewController
-@NextView("./bookmark_edit.xhtml")
-@PreviousView("./bookmark_list.xhtml")
+@NextView("pretty:bookmark-edit")
+@PreviousView("pretty:bookmark-list")
 public class BookmarkListMB extends AbstractListPageBean<Bookmark, Long> {
 
 	private static final long serialVersionUID = 1L;
