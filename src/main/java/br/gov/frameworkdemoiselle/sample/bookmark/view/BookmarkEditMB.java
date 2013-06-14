@@ -3,6 +3,7 @@ package br.gov.frameworkdemoiselle.sample.bookmark.view;
 import javax.inject.Inject;
 
 import br.gov.frameworkdemoiselle.annotation.PreviousView;
+import br.gov.frameworkdemoiselle.message.MessageContext;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
 import br.gov.frameworkdemoiselle.template.AbstractEditPageBean;
 import br.gov.frameworkdemoiselle.transaction.Transactional;
@@ -19,6 +20,9 @@ public class BookmarkEditMB extends AbstractEditPageBean<Bookmark, Long> {
 	@Inject
 	private BookmarkBC bookmarkBC;
 
+	@Inject
+	private MessageContext messageContext; 
+	
 	@Override
 	@Transactional
 	public String delete() {
@@ -37,6 +41,7 @@ public class BookmarkEditMB extends AbstractEditPageBean<Bookmark, Long> {
 	@Transactional
 	public String update() {
 		this.bookmarkBC.update(getBean());
+		messageContext.add("Bookmark atualizado com sucesso.");
 		return getPreviousView();
 	}
 
