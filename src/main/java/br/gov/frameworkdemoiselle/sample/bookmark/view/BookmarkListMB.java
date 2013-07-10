@@ -7,6 +7,7 @@ import javax.inject.Inject;
 
 import br.gov.frameworkdemoiselle.annotation.NextView;
 import br.gov.frameworkdemoiselle.annotation.PreviousView;
+import br.gov.frameworkdemoiselle.security.RequiredRole;
 import br.gov.frameworkdemoiselle.stereotype.ViewController;
 import br.gov.frameworkdemoiselle.template.AbstractListPageBean;
 import br.gov.frameworkdemoiselle.transaction.Transactional;
@@ -24,6 +25,7 @@ public class BookmarkListMB extends AbstractListPageBean<Bookmark, Long> {
 	@Inject
 	private BookmarkBC bc;
 
+	@RequiredRole("super-heroi")
 	@Override
 	protected List<Bookmark> handleResultList() {
 		return this.bc.findAll();
