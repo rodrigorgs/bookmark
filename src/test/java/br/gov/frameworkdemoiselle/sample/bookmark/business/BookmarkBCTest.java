@@ -2,6 +2,7 @@ package br.gov.frameworkdemoiselle.sample.bookmark.business;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.fail;
 
 import java.util.List;
 
@@ -13,6 +14,8 @@ import org.junit.runner.RunWith;
 
 import br.gov.frameworkdemoiselle.junit.DemoiselleRunner;
 import br.gov.frameworkdemoiselle.sample.bookmark.domain.Bookmark;
+import br.gov.frameworkdemoiselle.sample.bookmark.view.BookmarkListMB;
+import br.gov.frameworkdemoiselle.security.NotLoggedInException;
 
 @RunWith(DemoiselleRunner.class)
 public class BookmarkBCTest {
@@ -27,6 +30,35 @@ public class BookmarkBCTest {
 		}
 	}
 
+//	@Test
+//	public void testRequiredRoleMBNew() {
+//		try {
+//			BookmarkListMB mb = new BookmarkListMB();
+//			mb.teste();
+//			fail();
+//		} catch (NotLoggedInException e) {
+//		}
+//	}
+//	
+//	@Test
+//	public void testRequiredRoleBCNew() {
+//		try {
+//			BookmarkBC newBc = new BookmarkBC();
+//			newBc.teste();
+//			fail();
+//		} catch (NotLoggedInException e) {
+//		}
+//	}
+
+	@Test
+	public void testRequiredRoleBCInjected() {
+//		try {
+			bookmarkBC.teste();
+//			fail();
+//		} catch (Exception e) {
+//		}
+	}
+	
 	@Test
 	public void testLoad() {
 		bookmarkBC.load();
